@@ -1,13 +1,11 @@
-import { useState } from 'react'
-import './App.css'
-import AdminLogin from './pages/auth/AdminLogin'
+import { RouterProvider } from "react-router-dom"
+import router from "./routes/Router"
+
 
 function App() {
 
   return (
-    <>
-    <AdminLogin />
-    </>
+    <RouterProvider router={router} />
   )
 }
 
