@@ -1,8 +1,16 @@
 import { Eye } from 'lucide-react'
 import React from 'react'
 import { CONSTANT_IMAGES } from '../../assets/assets'
+import { useNavigate } from 'react-router-dom'
 
 const AdminLogin = () => {
+    const navigate = useNavigate();
+
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        navigate("/admin/dashboard")
+    }
     return (
         <div className="flex h-screen">
             {/* Left side: Blue background */}
@@ -26,7 +34,7 @@ const AdminLogin = () => {
                 <div className="flex flex-col gap-4">
                     <div className="flex items-center gap-4">
                         <div className=" bg-white/30 p-3  rounded-full">
-                        <img src={CONSTANT_IMAGES.ManageProducts} className='w-[35px] h-[35px]' alt="manage-products" />
+                            <img src={CONSTANT_IMAGES.ManageProducts} className='w-[35px] h-[35px]' alt="manage-products" />
                         </div>
                         <p className="text-white font-medium">Manage Products</p>
                     </div>
@@ -81,7 +89,9 @@ const AdminLogin = () => {
                             </div>
 
                             {/* Login button */}
-                            <button className="bg-green-600 px-10 py-2 text-white font-semibold rounded hover:bg-green-700 hover:scale-105 transition cursor-pointer mt-2">
+                            <button
+                                onClick={handleLogin}
+                                className="bg-green-600 px-10 py-2 text-white font-semibold rounded hover:bg-green-700 hover:scale-105 transition cursor-pointer mt-2">
                                 Login
                             </button>
                         </div>
