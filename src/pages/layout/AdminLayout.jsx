@@ -3,6 +3,8 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { CONSTANT_IMAGES } from "../../assets/assets";
 import {
   Bell,
+  ChevronDown,
+  ChevronUp,
   CircleUserRound,
   House,
   LayoutDashboard,
@@ -10,6 +12,7 @@ import {
   ListIndentIncrease,
   ShoppingBasket,
   Users,
+  Wrench,
 } from "lucide-react";
 
 const AdminLayout = () => {
@@ -19,9 +22,19 @@ const AdminLayout = () => {
 
   const navItems = [
     { icon: <LayoutDashboard />, label: "Dashboard", link: "/admin/dashboard" },
-    { icon: <ShoppingBasket />, label: "Manage Products", link: "/admin/inventory" },
+    {
+      icon: <ShoppingBasket />,
+      label: "Manage Products",
+      subMenu: [
+        { label: "Products", link: "/admin/product-list" },
+        { label: "Categories", link: "/admin/category-list" },
+        { label: "Brands", link: "/admin/brand-list" },
+        { label: "UOM", link: "/admin/uom-list" }
+      ]
+    },
     { icon: <Users />, label: "User Management", link: "/admin/user-managment" },
     { icon: <House />, label: "Inventory" },
+    { icon: <Wrench />, label: "Settings" },
   ];
 
   return (
@@ -61,18 +74,45 @@ const AdminLayout = () => {
         </div>
 
         {/* Nav items */}
-        <ul className="flex flex-col mt-10 gap-4 px-2">
-          {navItems.map((item, idx) => (
-            <li
-              key={idx}
-              className="flex items-center gap-2 p-2 cursor-pointer hover:bg-gray-100 rounded"
-              title={collapsed ? item.label : ""}
-              onClick={() => navigate(item.link)}
-            >
-              <span className="w-6 h-6 flex justify-center">{item.icon}</span>
-              {!collapsed && <span className="font-medium text-sm text-gray-900">{item.label}</span>}
-            </li>
-          ))}
+        <ul className="flex flex-col mt-10 gap-2 px-2">
+          {navItems.map((item, idx) => {
+            const [open, setOpen] = useState(false); // for submenu toggle
+
+            return (
+              <li key={idx}>
+                {/* Main nav item */}
+                <div
+                  className="flex items-center  gap-2 p-2 cursor-pointer hover:bg-gray-100 rounded"
+                  title={collapsed ? item.label : ""}
+                  onClick={() => {
+                    if (item.subMenu) setOpen(!open);
+                    else navigate(item.link);
+                  }}
+                >
+                  <span className="w-6 h-6 flex justify-center">{item.icon}</span>
+                  {!collapsed && <span className="font-medium text-sm text-gray-900">{item.label}</span>}
+                  {!collapsed && item.subMenu && (
+                    <span>{open ? <ChevronUp /> : <ChevronDown />}</span>
+                  )}
+                </div>
+
+                {/* Submenu */}
+                {item.subMenu && open && (
+                  <ul className="ml-6 mt-1 flex flex-col gap-1">
+                    {item.subMenu.map((sub, i) => (
+                      <li
+                        key={i}
+                        className="p-2 cursor-pointer text-gray-700 text-sm hover:bg-gray-200 rounded"
+                        onClick={() => navigate(sub.link)}
+                      >
+                        {sub.label}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </aside>
 

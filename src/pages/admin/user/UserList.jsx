@@ -1,7 +1,7 @@
 import Heading from '../../../components/common/Heading'
 import Container from '../../../components/common/Container'
 import { useState } from 'react';
-import { ListFilter } from 'lucide-react';
+import { ListFilter, Plus } from 'lucide-react';
 
 const UserList = () => {
     const [searchInput, setsearchInput] = useState("");
@@ -64,9 +64,14 @@ const UserList = () => {
                     className="border rounded-3xl py-2 px-4 border-gray-400 w-1/2 font-sans font-normal outline-none focus:border-blue-500 transition"
                     placeholder="Search username,email,mobile"
                 />
-                <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl'>
-                    <span><ListFilter /></span> <span className='font-sans font-semibold text-sm'> Sort by</span>
-                </button>
+                <div className='flex gap-3'>
+                    <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl cursor-pointer'>
+                        <span><ListFilter /></span> <span className='font-sans font-semibold text-sm'> Sort by</span>
+                    </button>
+                    <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl bg-black cursor-pointer'>
+                        <span><Plus color='white' /></span> <span className='font-sans font-semibold text-sm text-white'> Add User</span>
+                    </button>
+                </div>
             </div>
 
             <div className="overflow-x-auto font-sans">
@@ -111,8 +116,8 @@ const UserList = () => {
                             <div className="w-[10%] p-3 text-center">
                                 <span
                                     className={`px-3 py-1 rounded-full text-xs font-semibold ${user.status === "Active"
-                                            ? "bg-green-100 text-green-700"
-                                            : "bg-red-100 text-red-600"
+                                        ? "bg-green-100 text-green-700"
+                                        : "bg-red-100 text-red-600"
                                         }`}
                                 >
                                     {user.status}

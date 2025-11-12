@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Container from '../../../components/common/Container'
-import { ListFilter } from 'lucide-react'
+import { ListFilter, Plus } from 'lucide-react'
 import Heading from '../../../components/common/Heading'
 
 const ProductList = () => {
@@ -59,9 +59,14 @@ const ProductList = () => {
                     className="border rounded-3xl py-2 px-4 border-gray-400 w-1/2 font-sans font-normal outline-none focus:border-blue-500 transition"
                     placeholder="Search product"
                 />
-                <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl'>
-                    <span><ListFilter /></span> <span className='font-sans font-semibold text-sm'> Sort by</span>
-                </button>
+                <div className='flex gap-3'>
+                    <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl'>
+                        <span><ListFilter /></span> <span className='font-sans font-semibold text-sm'> Sort by</span>
+                    </button>
+                    <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl bg-black'>
+                        <span><Plus color='white' /></span> <span className='font-sans font-semibold text-sm text-white'> Add Product</span>
+                    </button>
+                </div>
             </div>
 
             {/* table item start here */}
