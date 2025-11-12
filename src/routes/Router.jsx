@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import AdminLogin from "../pages/auth/AdminLogin";
 import AdminLayout from "../pages/layout/AdminLayout";
 import DashBoard from "../pages/admin/DashBoard";
+import ProductList from "../pages/admin/products/ProductList";
+import UserList from "../pages/admin/user/UserList";
 
 
 
@@ -13,7 +15,9 @@ const router = createBrowserRouter([
     {
         element: <AdminLayout />,
         children: [
-            { path: "/admin/dashboard", element: <DashBoard /> }
+            { path: "/admin/dashboard", element: <DashBoard /> },
+            { path: "/admin/inventory", element: <ProductList /> },
+            { path: "/admin/user-managment", element: <UserList /> }
         ]
     }
 ]);

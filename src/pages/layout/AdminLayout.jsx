@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { CONSTANT_IMAGES } from "../../assets/assets";
 import {
   Bell,
@@ -15,11 +15,12 @@ import {
 const AdminLayout = () => {
   const [collapsed, setCollapsed] = useState(false); // desktop collapse
   const [mobileOpen, setMobileOpen] = useState(false); // mobile drawer
+  const navigate = useNavigate();
 
   const navItems = [
-    { icon: <LayoutDashboard />, label: "Dashboard" },
-    { icon: <ShoppingBasket />, label: "Manage Products" },
-    { icon: <Users />, label: "User Management" },
+    { icon: <LayoutDashboard />, label: "Dashboard", link: "/admin/dashboard" },
+    { icon: <ShoppingBasket />, label: "Manage Products", link: "/admin/inventory" },
+    { icon: <Users />, label: "User Management", link: "/admin/user-managment" },
     { icon: <House />, label: "Inventory" },
   ];
 
@@ -35,26 +36,28 @@ const AdminLayout = () => {
         `}
       >
         {/* Logo + Desktop toggle */}
-        <div className="flex items-center justify-between px-4 py-3 border-b">
-            <div className={`flex justify-between ${collapsed ? 'flex-col' : ''}`}>
-          <div className="flex items-center gap-2">
-            <img
-              src={CONSTANT_IMAGES.WebLogo}
-              className={`${collapsed ? "w-10" : "w-16"}`}
-              alt="logo"
-            />
-            {!collapsed && <h2 className="font-heading font-semibold text-gray-900">GoCart</h2>}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-400" >
+          <div className={`flex gap-6  ${collapsed ? 'flex-col' : ''}`}>
+
+            <div className="flex items-center gap-2">
+              <img
+                src={CONSTANT_IMAGES.WebLogo}
+                className={`${collapsed ? "w-10" : "w-16"}`}
+                alt="logo"
+              />
+              {!collapsed && <h2 className="font-heading font-semibold text-gray-900">GoCart</h2>}
+            </div>
+
+            {/* Desktop toggle button */}
+            <button
+              className="hidden md:block p-1 rounded hover:bg-gray-200"
+              onClick={() => setCollapsed(!collapsed)}
+            >
+              {collapsed ? <ListIndentIncrease /> : <ListIndentDecrease />}
+            </button>
+
           </div>
 
-          {/* Desktop toggle button */}
-          <button
-            className="hidden md:block p-1 rounded hover:bg-gray-200"
-            onClick={() => setCollapsed(!collapsed)}
-          >
-            {collapsed ? <ListIndentIncrease /> : <ListIndentDecrease />}
-          </button>
-
-          </div>
         </div>
 
         {/* Nav items */}
@@ -64,6 +67,7 @@ const AdminLayout = () => {
               key={idx}
               className="flex items-center gap-2 p-2 cursor-pointer hover:bg-gray-100 rounded"
               title={collapsed ? item.label : ""}
+              onClick={() => navigate(item.link)}
             >
               <span className="w-6 h-6 flex justify-center">{item.icon}</span>
               {!collapsed && <span className="font-medium text-sm text-gray-900">{item.label}</span>}
