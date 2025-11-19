@@ -7,6 +7,7 @@ import UserList from "../pages/admin/user/UserList";
 import UomList from "../pages/admin/products/UomList";
 import BrandList from "../pages/admin/products/BrandList";
 import CategoryList from "../pages/admin/products/CategoryList";
+import AddProduct from "../pages/admin/products/AddProduct";
 
 
 
@@ -20,11 +21,12 @@ const router = createBrowserRouter([
         children: [
             { path: "/admin/dashboard", element: <DashBoard /> },
             { path: "/admin/product-list", element: <ProductList /> },
-             { path: "/admin/uom-list", element: <UomList /> },
+            { path: "/admin/product-add", element: <AddProduct /> },
+            { path: "/admin/uom-list", element: <UomList /> },
             { path: "/admin/brand-list", element: <BrandList /> },
             { path: "/admin/category-list", element: <CategoryList /> },
             { path: "/admin/user-managment", element: <UserList /> },
-           
+
         ]
     }
 ]);
