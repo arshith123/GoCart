@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Container from '../../../components/common/Container'
 import { ListFilter, Plus } from 'lucide-react'
 import Heading from '../../../components/common/Heading'
-import { useNavigate } from 'react-router-dom'
 
 const ProductList = () => {
     const [searchInput, setsearchInput] = useState("");
@@ -47,8 +46,7 @@ const ProductList = () => {
             stock: 0,
             status: "Inactive",
         },
-    ]);
-    const navigate = useNavigate();
+    ])
     return (
         <Container>
             <Heading value="Manage Products" />
@@ -65,7 +63,7 @@ const ProductList = () => {
                     <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl'>
                         <span><ListFilter /></span> <span className='font-sans font-semibold text-sm'> Sort by</span>
                     </button>
-                    <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl bg-black' onClick={()=>navigate("/admin/product-add")}>
+                    <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl bg-black'>
                         <span><Plus color='white' /></span> <span className='font-sans font-semibold text-sm text-white'> Add Product</span>
                     </button>
                 </div>
