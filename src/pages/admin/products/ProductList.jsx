@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Container from '../../../components/common/Container'
 import { ListFilter, Plus } from 'lucide-react'
 import Heading from '../../../components/common/Heading'
+import { Button, Modal } from 'antd';
+import ProductAddForm from '../../../components/admin/product/ProductAddForm';
 
 const ProductList = () => {
     const [searchInput, setsearchInput] = useState("");
@@ -47,6 +49,19 @@ const ProductList = () => {
             status: "Inactive",
         },
     ])
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     return (
         <Container>
             <Heading value="Manage Products" />
@@ -63,7 +78,7 @@ const ProductList = () => {
                     <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl'>
                         <span><ListFilter /></span> <span className='font-sans font-semibold text-sm'> Sort by</span>
                     </button>
-                    <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl bg-black'>
+                    <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl bg-black cursor-pointer' onClick={showModal}>
                         <span><Plus color='white' /></span> <span className='font-sans font-semibold text-sm text-white'> Add Product</span>
                     </button>
                 </div>
@@ -128,7 +143,16 @@ const ProductList = () => {
 
 
             {/* table item end here */}
-
+            <Modal
+                title="Add a product"
+                width="95vw"
+                closable={{ 'aria-label': 'Custom Close Button' }}
+                open={isModalOpen}
+                onOk={handleOk}
+                onCancel={handleCancel}
+            >
+                <ProductAddForm />
+            </Modal>
         </Container>
     )
 }
