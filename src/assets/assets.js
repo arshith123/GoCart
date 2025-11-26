@@ -1,10 +1,12 @@
 import { House, LayoutDashboard, ShoppingBasket, Users } from 'lucide-react';
 import cart from './cart.png'
 import manageproduct from './manage_products.png'
+import backgroundImageLogin from './background_login.png'
 
 export const CONSTANT_IMAGES = {
     WebLogo: cart,
     ManageProducts: manageproduct,
+    bgImgLogin: backgroundImageLogin
 }
 
 // export const navItems = [

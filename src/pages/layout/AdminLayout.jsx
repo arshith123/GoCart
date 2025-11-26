@@ -21,9 +21,9 @@ const AdminLayout = () => {
   const navigate = useNavigate();
 
   const navItems = [
-    { icon: <LayoutDashboard />, label: "Dashboard", link: "/admin/dashboard" },
+    { icon: <LayoutDashboard color="#374151" strokeWidth={1.5} />, label: "Dashboard", link: "/admin/dashboard" },
     {
-      icon: <ShoppingBasket />,
+      icon: <ShoppingBasket color="#374151" strokeWidth={1.5} />,
       label: "Manage Products",
       subMenu: [
         { label: "Products", link: "/admin/product-list" },
@@ -32,9 +32,9 @@ const AdminLayout = () => {
         { label: "UOM", link: "/admin/uom-list" }
       ]
     },
-    { icon: <Users />, label: "User Management", link: "/admin/user-managment" },
-    { icon: <House />, label: "Inventory" },
-    { icon: <Wrench />, label: "Settings" },
+    { icon: <Users strokeWidth={1.5} color="#374151" />, label: "User Management", link: "/admin/user-managment" },
+    { icon: <House strokeWidth={1.5} color="#374151" />, label: "Inventory" },
+    { icon: <Wrench strokeWidth={1.5} color="#374151" />, label: "Settings" },
   ];
 
   return (
@@ -74,7 +74,7 @@ const AdminLayout = () => {
         </div>
 
         {/* Nav items */}
-        <ul className="flex flex-col mt-10 gap-2 px-2">
+        <ul className="flex flex-col mt-10 gap-6 px-2">
           {navItems.map((item, idx) => {
             const [open, setOpen] = useState(false); // for submenu toggle
 
@@ -90,7 +90,7 @@ const AdminLayout = () => {
                   }}
                 >
                   <span className="w-6 h-6 flex justify-center">{item.icon}</span>
-                  {!collapsed && <span className="font-medium text-sm text-gray-900">{item.label}</span>}
+                  {!collapsed && <span className="font-regular text-sm text-gray-700 font-sans hover:font-medium">{item.label}</span>}
                   {!collapsed && item.subMenu && (
                     <span>{open ? <ChevronUp /> : <ChevronDown />}</span>
                   )}
@@ -126,7 +126,7 @@ const AdminLayout = () => {
 
       {/* Main content */}
       <main className="flex-1 flex flex-col md:ml-0">
-        <header className="flex items-center justify-between px-4 md:px-10 py-2 shadow-md bg-[#f9fafb]">
+        <header className="flex items-center justify-between px-4 md:px-10 py-5 shadow-md bg-[#f9fafb]">
           {/* Mobile toggle button */}
           <button
             className="md:hidden p-2 rounded hover:bg-gray-200"
@@ -139,11 +139,11 @@ const AdminLayout = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <CircleUserRound className="cursor-pointer" />
-            <div className="bg-gray-300 p-3 rounded-2xl">
+            <Bell className="cursor-pointer" strokeWidth={1.5} color="#374151"/>
+            <CircleUserRound className="cursor-pointer" strokeWidth={1.5} color="#374151"/>
+            <div className="bg-gray-300 px-4  py-2 rounded-md">
               <p className="font-sans font-medium text-gray-900">Admin</p>
             </div>
-            <Bell className="cursor-pointer" />
           </div>
         </header>
 
