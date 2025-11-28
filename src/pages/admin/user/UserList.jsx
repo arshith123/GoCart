@@ -2,9 +2,12 @@ import Heading from '../../../components/common/Heading'
 import Container from '../../../components/common/Container'
 import { useState } from 'react';
 import { ListFilter, Plus } from 'lucide-react';
+import { Modal } from 'antd';
+import UserAddForm from '../../../components/admin/user/UserAddForm';
 
 const UserList = () => {
     const [searchInput, setsearchInput] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [users, setUsers] = useState([
         {
             id: 1,
@@ -52,6 +55,17 @@ const UserList = () => {
             status: "Inactive",
         },
     ])
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     return (
         <Container>
             <Heading value="User Managment" />
@@ -68,7 +82,7 @@ const UserList = () => {
                     <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl cursor-pointer'>
                         <span><ListFilter /></span> <span className='font-sans font-semibold text-sm'> Sort by</span>
                     </button>
-                    <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl bg-black cursor-pointer'>
+                    <button className='flex gap-2 items-center border border-gray-400 py-2 px-4 rounded-4xl bg-black cursor-pointer' onClick={showModal}>
                         <span><Plus color='white' /></span> <span className='font-sans font-semibold text-sm text-white'> Add User</span>
                     </button>
                 </div>
@@ -134,7 +148,16 @@ const UserList = () => {
             </div>
 
 
-
+            <Modal
+                title="Add User"
+                width="45vw"
+                closable={{ 'aria-label': 'Custom Close Button' }}
+                open={isModalOpen}
+                onOk={handleOk}
+                onCancel={handleCancel}
+            >
+               <UserAddForm />
+            </Modal>
 
         </Container>
     )
