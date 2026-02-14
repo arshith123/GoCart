@@ -28,23 +28,46 @@ const AdminLayout = () => {
 
       {/* Main content */}
       <main className="flex-1 flex flex-col md:ml-0">
-        <header className="flex items-center justify-between px-4 md:px-10 py-5 shadow-md bg-[#f9fafb]">
+        <header className="flex items-center justify-between px-6 md:px-10 py-4 shadow-md bg-white border-b border-gray-200">
           {/* Mobile toggle button */}
           <button
-            className="md:hidden p-2 rounded hover:bg-gray-200"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
-            <ListIndentIncrease />
+            <ListIndentIncrease color="#374151" />
           </button>
-          <div>
-            {/* empty */}
+          
+          {/* Search or breadcrumb area - currently empty */}
+          <div className="flex-1">
+            {/* You can add breadcrumbs or search here */}
           </div>
 
-          <div className="flex items-center gap-4">
-            <Bell className="cursor-pointer" strokeWidth={1.5} color="#374151" />
-            <CircleUserRound className="cursor-pointer" strokeWidth={1.5} color="#374151" />
-            <div className="bg-gray-300 px-4  py-2 rounded-md">
-              <p className="font-sans font-medium text-gray-900">Admin</p>
+          {/* Right side - Notifications & User */}
+          <div className="flex items-center gap-5">
+            {/* Notification Bell with Badge */}
+            <div className="relative cursor-pointer group">
+              <Bell 
+                className="transition-colors group-hover:text-indigo-600" 
+                strokeWidth={1.5} 
+                color="#374151" 
+                size={22}
+              />
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                3
+              </span>
+            </div>
+
+            {/* User Profile Section */}
+            <div className="flex items-center gap-3 bg-gradient-to-r from-indigo-50 to-purple-50 px-4 py-2.5 rounded-lg border border-indigo-100 hover:shadow-md transition-all cursor-pointer">
+              <CircleUserRound 
+                className="text-indigo-600" 
+                strokeWidth={1.5} 
+                size={24}
+              />
+              <div className="hidden sm:block">
+                <p className="font-sans font-semibold text-sm text-gray-900">Admin</p>
+                <p className="font-sans text-xs text-gray-500">Administrator</p>
+              </div>
             </div>
           </div>
         </header>

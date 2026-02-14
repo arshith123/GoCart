@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import AdminLogin from "../pages/auth/AdminLogin";
+import AdminSignup from "../pages/auth/AdminSignup";
 import AdminLayout from "../pages/layout/AdminLayout";
 import DashBoard from "../pages/admin/DashBoard";
 import ProductList from "../pages/admin/products/ProductList";
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
     {
         path: "/admin/login",
         element: <AdminLogin />
+    },
+    {
+        path: "/admin/signup",
+        element: <AdminSignup />
     },
     {
         element: <AdminLayout />,
