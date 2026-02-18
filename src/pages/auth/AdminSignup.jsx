@@ -28,7 +28,7 @@ const AdminSignup = () => {
             return;
         }
         // Navigate to dashboard after successful signup
-        navigate("/admin/dashboard")
+        navigate("/dashboard")
     }
 
     const handleInputChange = (e) => {
@@ -249,7 +249,7 @@ const AdminSignup = () => {
                                 Already have an account?{' '}
                                 <button
                                     type="button"
-                                    onClick={() => navigate('/admin/login')}
+                                    onClick={() => navigate('/login')}
                                     className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
                                 >
                                     Sign In

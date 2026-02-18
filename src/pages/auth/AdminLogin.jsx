@@ -14,7 +14,7 @@ const AdminLogin = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        navigate("/admin/dashboard")
+        navigate("/dashboard")
     }
 
     const handleInputChange = (e) => {
@@ -172,7 +172,7 @@ const AdminLogin = () => {
                                 Don't have an account?{' '}
                                 <button
                                     type="button"
-                                    onClick={() => navigate('/admin/signup')}
+                                    onClick={() => navigate('/signup')}
                                     className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
                                 >
                                     Sign Up
